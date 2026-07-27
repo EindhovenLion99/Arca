@@ -1,0 +1,111 @@
+# ==============================
+# Dependencies
+# ==============================
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# ==============================
+# Next.js
+# ==============================
+.next/
+out/
+build/
+next-env.d.ts
+
+# ==============================
+# Production / Build
+# ==============================
+dist/
+
+# ==============================
+# Environment variables
+# ==============================
+.env
+.env*.local
+.env.development
+.env.production
+.env.test
+
+# Keep an example file tracked (create this manually without real values)
+!.env.example
+
+# ==============================
+# Prisma
+# ==============================
+# Ignore local SQLite db files if you ever use them
+*.db
+*.db-journal
+
+# Do NOT ignore schema or migrations, those SHOULD be tracked
+!prisma/schema.prisma
+!prisma/migrations/
+
+# ==============================
+# Logs
+# ==============================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# ==============================
+# Testing / Coverage
+# ==============================
+coverage/
+.nyc_output/
+
+# ==============================
+# Docker
+# ==============================
+# Postgres data volume if mapped to a local folder
+postgres_data/
+docker-compose.override.yml
+
+# ==============================
+# Editor / IDE
+# ==============================
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ==============================
+# OS files
+# ==============================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==============================
+# TypeScript
+# ==============================
+*.tsbuildinfo
+
+# ==============================
+# Vercel (in case you deploy there later)
+# ==============================
+.vercel
+
+# ==============================
+# Misc cache
+# ==============================
+.turbo/
+.cache/
+.eslintcache
+
+# ==============================
+# Local certificates / secrets
+# ==============================
+*.pem
+*.key
+*.cert
