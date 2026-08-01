@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.9.1",
   "engineVersion": "e922089b7d7502aff4249d5da3420f6fa55fc6ad",
   "activeProvider": "postgresql",
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Get a free hosted Postgres database in seconds: `npx create-db`\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"./generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Account {\n  id          Int      @id @default(autoincrement())\n  title       String   @db.VarChar(255)\n  description String   @db.Text\n  IBAN        String   @db.VarChar(34)\n  status      Status   @default(ACTIVE)\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n}\n\nenum Status {\n  ACTIVE\n  INACTIVE\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,10 +32,10 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Account\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"IBAN\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[]"),
-  graph: "AAAA"
+  strings: JSON.parse("[\"where\",\"Account.findUnique\",\"Account.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Account.findFirst\",\"Account.findFirstOrThrow\",\"Account.findMany\",\"data\",\"Account.createOne\",\"Account.createMany\",\"Account.createManyAndReturn\",\"Account.updateOne\",\"Account.updateMany\",\"Account.updateManyAndReturn\",\"create\",\"update\",\"Account.upsertOne\",\"Account.deleteOne\",\"Account.deleteMany\",\"having\",\"_count\",\"_avg\",\"_sum\",\"_min\",\"_max\",\"Account.groupBy\",\"Account.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"title\",\"description\",\"IBAN\",\"Status\",\"status\",\"createdAt\",\"updatedAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\",\"increment\",\"decrement\",\"multiply\",\"divide\"]"),
+  graph: "NQsQChwAACgAMB0AAAQAEB4AACgAMB8CAAAAASABACoAISEBACoAISIBACoAISQAACskIiVAACwAISZAACwAIQEAAAABACABAAAAAQAgChwAACgAMB0AAAQAEB4AACgAMB8CACkAISABACoAISEBACoAISIBACoAISQAACskIiVAACwAISZAACwAIQADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACAHHwIAAAABIAEAAAABIQEAAAABIgEAAAABJAAAACQCJUAAAAABJkAAAAABAQgAAAkAIAcfAgAAAAEgAQAAAAEhAQAAAAEiAQAAAAEkAAAAJAIlQAAAAAEmQAAAAAEBCAAACwAwAQgAAAsAMAcfAgA1ACEgAQAyACEhAQAyACEiAQAyACEkAAAzJCIlQAA0ACEmQAA0ACECAAAAAQAgCAAADgAgBx8CADUAISABADIAISEBADIAISIBADIAISQAADMkIiVAADQAISZAADQAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgBRUAAC0AIBYAAC4AIBcAADEAIBgAADAAIBkAAC8AIAocAAAaADAdAAAXABAeAAAaADAfAgAbACEgAQAcACEhAQAcACEiAQAcACEkAAAdJCIlQAAeACEmQAAeACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAocAAAaADAdAAAXABAeAAAaADAfAgAbACEgAQAcACEhAQAcACEiAQAcACEkAAAdJCIlQAAeACEmQAAeACENFQAAIAAgFgAAJwAgFwAAIAAgGAAAIAAgGQAAIAAgJwIAAAABKAIAAAAEKQIAAAAEKgIAAAABKwIAAAABLAIAAAABLQIAAAABLgIAJgAhDhUAACAAIBgAACUAIBkAACUAICcBAAAAASgBAAAABCkBAAAABCoBAAAAASsBAAAAASwBAAAAAS0BAAAAAS4BACQAIS8BAAAAATABAAAAATEBAAAAAQcVAAAgACAYAAAjACAZAAAjACAnAAAAJAIoAAAAJAgpAAAAJAguAAAiJCILFQAAIAAgGAAAIQAgGQAAIQAgJ0AAAAABKEAAAAAEKUAAAAAEKkAAAAABK0AAAAABLEAAAAABLUAAAAABLkAAHwAhCxUAACAAIBgAACEAIBkAACEAICdAAAAAAShAAAAABClAAAAABCpAAAAAAStAAAAAASxAAAAAAS1AAAAAAS5AAB8AIQgnAgAAAAEoAgAAAAQpAgAAAAQqAgAAAAErAgAAAAEsAgAAAAEtAgAAAAEuAgAgACEIJ0AAAAABKEAAAAAEKUAAAAAEKkAAAAABK0AAAAABLEAAAAABLUAAAAABLkAAIQAhBxUAACAAIBgAACMAIBkAACMAICcAAAAkAigAAAAkCCkAAAAkCC4AACIkIgQnAAAAJAIoAAAAJAgpAAAAJAguAAAjJCIOFQAAIAAgGAAAJQAgGQAAJQAgJwEAAAABKAEAAAAEKQEAAAAEKgEAAAABKwEAAAABLAEAAAABLQEAAAABLgEAJAAhLwEAAAABMAEAAAABMQEAAAABCycBAAAAASgBAAAABCkBAAAABCoBAAAAASsBAAAAASwBAAAAAS0BAAAAAS4BACUAIS8BAAAAATABAAAAATEBAAAAAQ0VAAAgACAWAAAnACAXAAAgACAYAAAgACAZAAAgACAnAgAAAAEoAgAAAAQpAgAAAAQqAgAAAAErAgAAAAEsAgAAAAEtAgAAAAEuAgAmACEIJwgAAAABKAgAAAAEKQgAAAAEKggAAAABKwgAAAABLAgAAAABLQgAAAABLggAJwAhChwAACgAMB0AAAQAEB4AACgAMB8CACkAISABACoAISEBACoAISIBACoAISQAACskIiVAACwAISZAACwAIQgnAgAAAAEoAgAAAAQpAgAAAAQqAgAAAAErAgAAAAEsAgAAAAEtAgAAAAEuAgAgACELJwEAAAABKAEAAAAEKQEAAAAEKgEAAAABKwEAAAABLAEAAAABLQEAAAABLgEAJQAhLwEAAAABMAEAAAABMQEAAAABBCcAAAAkAigAAAAkCCkAAAAkCC4AACMkIggnQAAAAAEoQAAAAAQpQAAAAAQqQAAAAAErQAAAAAEsQAAAAAEtQAAAAAEuQAAhACEAAAAAAAEyAQAAAAEBMgAAACQCATJAAAAAAQUyAgAAAAEzAgAAAAE0AgAAAAE1AgAAAAE2AgAAAAEAAAAABRUABhYABxcACBgACRkACgAAAAAABRUABhYABxcACBgACRkACgECAQIDAQUGAQYHAQcIAQkKAQoMAgsNAwwPAQ0RAg4SBBETARIUARMVAhoYBRsZCw"
 }
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -70,8 +70,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more Accounts
+   * const accounts = await prisma.account.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -94,8 +94,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more Accounts
+ * const accounts = await prisma.account.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -188,7 +188,15 @@ export interface PrismaClient<
     extArgs: ExtArgs
   }>>
 
-    
+      /**
+   * `prisma.account`: Exposes CRUD operations for the **Account** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Accounts
+    * const accounts = await prisma.account.findMany()
+    * ```
+    */
+  get account(): Prisma.AccountDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
