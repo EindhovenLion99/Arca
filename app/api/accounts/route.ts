@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(validation.error.issues, { status: 400 });
   }
 
-  const newAccount = prisma.account.create({
+  const newAccount = await prisma.account.create({
     data: {
       title: validation.data.title,
       description: validation.data.description || '',
