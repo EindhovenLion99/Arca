@@ -1,4 +1,5 @@
 import "@radix-ui/themes/styles.css";
+import "./theme-config.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -31,7 +32,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Theme>
+        <Theme accentColor="gray" grayColor="gray" appearance="dark">
           <NavBar/>
           <main className="p-5">{children}</main>
         </Theme>
