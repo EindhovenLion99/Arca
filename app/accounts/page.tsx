@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { Table } from "@radix-ui/themes";
 import AccountStatusBadge from "@/app/components/AccountStatusBadge";
 import AccountPagesTools from "./AccountsTools";
-import Link from "next/link";
+import Link from "@/app/components/Link";
 
 const AccountPage = async () => {
   const accounts = await prisma.account.findMany();
