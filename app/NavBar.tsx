@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import { CiMoneyCheck1 } from "react-icons/ci";
 import classnames from 'classnames';
+import ThemeToggle from './components/ThemeToggle';
 
 
 const NavBar = () => {
@@ -28,6 +29,9 @@ const NavBar = () => {
           href={link.href}>{link.label}</Link>
         )}
       </ul>
+      <div className="ml-auto">
+        <ThemeToggle />
+      </div>
     </nav>
   )
 }
