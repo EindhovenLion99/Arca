@@ -1,0 +1,58 @@
+.card {
+    position: relative;
+    width: 275px;
+    aspect-ratio: 1.6;
+}
+
+.background {
+    object-fit: contain;
+    z-index: 0;
+}
+
+.content {
+    position: absolute;
+    inset: 0;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.body span,
+.footer span {
+    font-size: .8rem;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.body p {
+    margin-top: .3rem;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.footer p {
+    margin-top: .25rem;
+    font-weight: 600;
+}
+
+.balance {
+    text-align: right;
+}
